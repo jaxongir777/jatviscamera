@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { createEngine } from './engine.js';
-import './styles.css';
+import './App.css';
 
 const TOOLS = [
   ['pencil', '✏️', 'Qalam'],

@@ -52,7 +52,7 @@ const INITIAL = {
   gProg: 0,
 };
 
-export default function App() {
+function App() {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const cursorRef = useRef(null);
@@ -149,11 +149,9 @@ export default function App() {
         {ui.toast}
       </div>
 
-      {/* 1 qo'l: chizish menyusi */}
+      {/* Chizish menyusi */}
       <div
-        className={
-          'menu' + (ui.menu === 'draw' ? ' show' : '')
-        }
+        className={`menu ${ui.menu === 'draw' ? 'show' : ''}`}
       >
         <h3>CHIZISH MENYUSI</h3>
 
@@ -161,9 +159,7 @@ export default function App() {
           {TOOLS.map(([id, icon, label]) => (
             <button
               key={id}
-              className={
-                'btn' + (ui.tool === id ? ' sel' : '')
-              }
+              className={`btn ${ui.tool === id ? 'sel' : ''}`}
               onClick={() => E()?.pickTool(id)}
             >
               {icon}
@@ -176,20 +172,17 @@ export default function App() {
           {COLORS.map((c) => (
             <button
               key={c}
-              className={
-                'btn sw' + (ui.color === c ? ' sel' : '')
-              }
+              className={`btn sw ${ui.color === c ? 'sel' : ''}`}
               style={{ '--sc': c }}
               onClick={() => E()?.pickColor(c)}
+              aria-label={`Rang ${c}`}
             />
           ))}
 
           {SIZES.map(([n, label]) => (
             <button
               key={n}
-              className={
-                'btn sz' + (ui.size === n ? ' sel' : '')
-              }
+              className={`btn sz ${ui.size === n ? 'sel' : ''}`}
               onClick={() => E()?.pickSize(n)}
             >
               {label}
@@ -224,11 +217,9 @@ export default function App() {
         </div>
       </div>
 
-      {/* 2 qo'l: stikerlar menyusi */}
+      {/* Stikerlar menyusi */}
       <div
-        className={
-          'menu' + (ui.menu === 'sticker' ? ' show' : '')
-        }
+        className={`menu ${ui.menu === 'sticker' ? 'show' : ''}`}
       >
         <h3>STIKERLAR</h3>
 
@@ -236,14 +227,11 @@ export default function App() {
           {STICKERS.map((s) => (
             <button
               key={s}
-              className={
-                'btn' +
-                (
-                  ui.tool === 'sticker' && ui.sticker === s
-                    ? ' sel'
-                    : ''
-                )
-              }
+              className={`btn ${
+                ui.tool === 'sticker' && ui.sticker === s
+                  ? 'sel'
+                  : ''
+              }`}
               onClick={() => E()?.pickSticker(s)}
             >
               {s}
@@ -264,34 +252,24 @@ export default function App() {
 
       {/* Pastki boshqaruv paneli */}
       <div id="dock">
-        <button
-          onClick={() => E()?.openMenu('draw')}
-        >
+        <button onClick={() => E()?.openMenu('draw')}>
           ✏️ Chizish (1 qo'l)
         </button>
 
-        <button
-          onClick={() => E()?.openMenu('sticker')}
-        >
+        <button onClick={() => E()?.openMenu('sticker')}>
           🎭 Stikerlar (2 qo'l)
         </button>
 
-        <button
-          onClick={() => E()?.togglePerson()}
-        >
+        <button onClick={() => E()?.togglePerson()}>
           👤 Odamga yopishtirish:{' '}
           {ui.anchorPerson ? 'YONIQ' : "O'CHIQ"}
         </button>
 
-        <button
-          onClick={() => E()?.undo()}
-        >
+        <button onClick={() => E()?.undo()}>
           ↩️ Ortga
         </button>
 
-        <button
-          onClick={() => E()?.clear()}
-        >
+        <button onClick={() => E()?.clear()}>
           🗑️ Tozalash
         </button>
       </div>
@@ -383,3 +361,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;
